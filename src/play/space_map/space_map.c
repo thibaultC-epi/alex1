@@ -26,22 +26,10 @@ void direction_ship_event(game_t *gm)
 
 void mooving_on_map(game_t *gm)
 {
-    if (gm->play->s_map->ship_lim_map == 0) {
-        check_limit_map_true(gm);
-        check_limit_map_false(gm);
-    } if (gm->play->s_map->lim_map == 0)
-        moove_map(gm);
-    if (gm->play->s_map->lim_map == 1 &&
-    gm->play->s_map->ship_lim_map == 0)
-        gm->play->s_map->ship_lim_map = 2;
-    if (gm->play->s_map->lim_map == 1) {
-        check_ship_limit_map_true(gm);
-        check_ship_limit_map_false(gm);
-        if (gm->play->s_map->ship_lim_map == 2)
-            moove_ship(gm);
-        if (gm->play->s_map->ship_lim_map != 0)
-            gm->play->s_map->ship_lim_map = 2;
-    }
+    moove_up_ship(gm);
+    moove_down_ship(gm);
+    moove_left_ship(gm);
+    moove_right_ship(gm);
 }
 
 void event_map(game_t *gm)

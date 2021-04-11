@@ -20,6 +20,7 @@ space_map_t *struct_fill_space_map3(space_map_t *s_map)
     s_map->clock = sfClock_create();
     s_map->lim_map = 0;
     s_map->ship_lim_map = 0;
+    s_map->j = 0;
     return (s_map);
 }
 

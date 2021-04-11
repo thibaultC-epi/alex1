@@ -13,13 +13,14 @@ void up_direction_ship(game_t *gm)
         gm->play->s_map->time = sfClock_getElapsedTime(gm->play->s_map->clock);
         gm->play->s_map->second = gm->play->s_map->time.microseconds /
         1000000.0;
-        if (gm->play->s_map->second > 1) {
+        if (gm->play->s_map->second > 0.001) {
             if (gm->play->s_map->dir_ship >= 180)
-                gm->play->s_map->dir_ship += 1;
+                gm->play->s_map->dir_ship += 2;
             else
-                gm->play->s_map->dir_ship -= 1;
+                gm->play->s_map->dir_ship -= 2;
             if (gm->play->s_map->dir_ship == 360)
                 gm->play->s_map->dir_ship = 0;
+            sfClock_restart(gm->play->s_map->clock);
         }
         sfSprite_setRotation(gm->play->s_map->ship,
         gm->play->s_map->dir_ship);
@@ -35,14 +36,15 @@ void right_direction_ship(game_t *gm)
         gm->play->s_map->time = sfClock_getElapsedTime(gm->play->s_map->clock);
         gm->play->s_map->second = gm->play->s_map->time.microseconds /
         1000000.0;
-        if (gm->play->s_map->second > 1) {
+        if (gm->play->s_map->second > 0.001) {
             if (gm->play->s_map->dir_ship >= 270 ||
             gm->play->s_map->dir_ship < 90)
-                gm->play->s_map->dir_ship += 1;
+                gm->play->s_map->dir_ship += 2;
             else
-                gm->play->s_map->dir_ship -= 1;
+                gm->play->s_map->dir_ship -= 2;
             if (gm->play->s_map->dir_ship == 360)
                 gm->play->s_map->dir_ship = 0;
+            sfClock_restart(gm->play->s_map->clock);
         }
         sfSprite_setRotation(gm->play->s_map->ship,
         gm->play->s_map->dir_ship);
@@ -58,14 +60,15 @@ void down_direction_ship(game_t *gm)
         gm->play->s_map->time = sfClock_getElapsedTime(gm->play->s_map->clock);
         gm->play->s_map->second = gm->play->s_map->time.microseconds /
         1000000.0;
-        if (gm->play->s_map->second > 1) {
+        if (gm->play->s_map->second > 0.001) {
             if (gm->play->s_map->dir_ship >= 0 &&
             gm->play->s_map->dir_ship < 180)
-                gm->play->s_map->dir_ship += 1;
+                gm->play->s_map->dir_ship += 2;
             else
-                gm->play->s_map->dir_ship -= 1;
+                gm->play->s_map->dir_ship -= 2;
             if (gm->play->s_map->dir_ship == 360)
                 gm->play->s_map->dir_ship = 0;
+            sfClock_restart(gm->play->s_map->clock);
         }
         sfSprite_setRotation(gm->play->s_map->ship,
         gm->play->s_map->dir_ship);
@@ -81,17 +84,18 @@ void left_direction_ship(game_t *gm)
         gm->play->s_map->time = sfClock_getElapsedTime(gm->play->s_map->clock);
         gm->play->s_map->second = gm->play->s_map->time.microseconds /
         1000000.0;
-        if (gm->play->s_map->second > 1) {
+        if (gm->play->s_map->second > 0.001) {
             if (gm->play->s_map->dir_ship >= 90 &&
             gm->play->s_map->dir_ship < 270)
-                gm->play->s_map->dir_ship += 1;
+                gm->play->s_map->dir_ship += 2;
             else {
                 if (gm->play->s_map->dir_ship == 0)
                     gm->play->s_map->dir_ship = 360;
-                gm->play->s_map->dir_ship -= 1;
+                gm->play->s_map->dir_ship -= 2;
             }
             if (gm->play->s_map->dir_ship == 360)
                 gm->play->s_map->dir_ship = 0;
+            sfClock_restart(gm->play->s_map->clock);
         }
         sfSprite_setRotation(gm->play->s_map->ship,
         gm->play->s_map->dir_ship);

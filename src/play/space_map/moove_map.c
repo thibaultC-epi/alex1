@@ -79,18 +79,22 @@ void moove_map(game_t *gm)
 {
     if (gm->ev->event.key.code == sfKeyUp &&
     gm->play->s_map->dir_ship == 0 &&
-    gm->play->s_map->i == -1)
+    gm->play->s_map->i == -1 &&
+    gm->play->s_map->pos_ship.y == 526.5)
         up_moove_map(gm);
     if (gm->ev->event.key.code == sfKeyRight &&
     gm->play->s_map->dir_ship == 90 &&
-    gm->play->s_map->i == -1)
+    gm->play->s_map->i == -1 &&
+    gm->play->s_map->pos_ship.x == 960)
         right_moove_map(gm);
     if (gm->ev->event.key.code == sfKeyDown &&
     gm->play->s_map->dir_ship == 180 &&
-    gm->play->s_map->i == -1)
+    gm->play->s_map->i == -1 &&
+    gm->play->s_map->pos_ship.y == 526.5)
         down_moove_map(gm);
     if (gm->ev->event.key.code == sfKeyLeft &&
     gm->play->s_map->dir_ship == 270 &&
-    gm->play->s_map->i == -1)
+    gm->play->s_map->i == -1 &&
+    gm->play->s_map->pos_ship.x == 960)
         left_moove_map(gm);
 }

@@ -37,6 +37,7 @@ typedef struct space_map
     int i;
     int lim_map;
     int ship_lim_map;
+    int j;
 }space_map_t;
 
 typedef struct inventory
