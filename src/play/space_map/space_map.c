@@ -10,39 +10,27 @@
 void direction_ship_event(game_t *gm)
 {
     if (gm->ev->event.key.code == sfKeyUp &&
-    gm->play->s_map->dir_ship != 0) {
-        gm->play->s_map->i = 0;
+    gm->play->v_s_map->dir_ship != 0) {
+        gm->play->v_s_map->i = 0;
     } if (gm->ev->event.key.code == sfKeyRight &&
-    gm->play->s_map->dir_ship != 90) {
-        gm->play->s_map->i = 1;
+    gm->play->v_s_map->dir_ship != 90) {
+        gm->play->v_s_map->i = 1;
     } if (gm->ev->event.key.code == sfKeyDown &&
-    gm->play->s_map->dir_ship != 180) {
-        gm->play->s_map->i = 2;
+    gm->play->v_s_map->dir_ship != 180) {
+        gm->play->v_s_map->i = 2;
     } if (gm->ev->event.key.code == sfKeyLeft &&
-    gm->play->s_map->dir_ship != 270) {
-        gm->play->s_map->i = 3;
+    gm->play->v_s_map->dir_ship != 270) {
+        gm->play->v_s_map->i = 3;
     }
 }
 
 void mooving_on_map(game_t *gm)
 {
-    moove_up_ship(gm);
-    moove_down_ship(gm);
-    moove_left_ship(gm);
-    moove_right_ship(gm);
-}
-
-void event_map(game_t *gm)
-{
-    while (sfRenderWindow_pollEvent(gm->win->win, &gm->ev->event)) {
-        if (gm->ev->event.type == sfEvtClosed)
-            sfRenderWindow_close(gm->win->win);
-        if (gm->ev->event.type == sfEvtKeyPressed) {
-            direction_ship_event(gm);
-            mooving_on_map(gm);
-            sfSprite_setPosition(gm->play->s_map->ship,
-            gm->play->s_map->pos_ship);
-        }
+    if (gm->play->v_s_map->v_m_ship == 0) {
+        moove_up_ship(gm);
+        moove_down_ship(gm);
+        moove_left_ship(gm);
+        moove_right_ship(gm);
     }
 }
 
@@ -52,13 +40,14 @@ void draw_space_map(game_t *gm)
         sfRenderWindow_drawSprite(gm->win->win, gm->play->s_map->map[i],
         NULL);
     }
-    for (int i = 0; i < 8; i++) {
-        sfRenderWindow_drawSprite(gm->win->win, gm->play->s_map->planet[i],
-        NULL);
-    }
-    sfRenderWindow_drawSprite(gm->win->win, gm->play->s_map->planet[12],
-    NULL);
-    if (gm->play->s_map->i == -1) {
+    for (int i = 0; i < 13; i++) {
+        gm->play->v_s_map->v_planet = 0;
+        check_if_planet_visible(gm, i);
+        if (gm->play->v_s_map->v_planet == 1) {
+            sfRenderWindow_drawSprite(gm->win->win, gm->play->s_map->planet[i],
+            NULL);
+        }
+    } if (gm->play->v_s_map->i == -1) {
         sfRenderWindow_drawSprite(gm->win->win, gm->play->s_map->ship,
         NULL);
     }
@@ -66,9 +55,16 @@ void draw_space_map(game_t *gm)
 
 void space_map(game_t *gm)
 {
-    event_map(gm);
     sfSprite_setTexture(gm->play->s_map->ship,
-    gm->play->s_map->t_ship[gm->play->s_map->ship_val], sfTrue);
+    gm->play->s_map->t_ship[gm->play->v_s_map->ship_val], sfTrue);
     draw_space_map(gm);
-    set_direction_ship(gm);
+    anime_planet(gm);
+    if (gm->play->v_s_map->v_m_ship == 0)
+        set_direction_ship(gm);
+    for (int i = 0; i <= 8; i++) {
+        collision_right(gm, i);
+        collision_left(gm, i);
+        collision_top(gm, i);
+        collision_bottom(gm, i);
+    }
 }

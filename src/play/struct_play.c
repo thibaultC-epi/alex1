@@ -21,9 +21,7 @@ inventory_t *struct_fill_inventory(void)
 stats_t *struct_fill_stats(void)
 {
     stats_t *stats = malloc(sizeof(stats_t));
-    stats->charac = sfSprite_create();
     stats->stats = sfSprite_create();
-    stats->t_char = sfTexture_createFromFile("image/char.png", NULL);
     stats->t_stats = sfTexture_createFromFile("image/character.png", NULL);
     return (stats);
 }

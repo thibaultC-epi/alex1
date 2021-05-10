@@ -10,7 +10,6 @@
 void draw_sprite_character_inv(game_t *gm)
 {
     sfRenderWindow_drawSprite(gm->win->win, gm->play->stat->stats, NULL);
-    sfRenderWindow_drawSprite(gm->win->win, gm->play->stat->charac, NULL);
 }
 
 void character_inv(game_t *gm)

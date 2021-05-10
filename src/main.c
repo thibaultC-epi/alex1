@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2020
-** main.c
+** graph
 ** File description:
 ** main
 */
@@ -9,8 +9,15 @@
 
 void initialisation(game_t *gm)
 {
-    init_window(gm);
+    set_window(gm);
+    init_menu(gm);
     init_play(gm);
+    init_opt(gm);
+    init_final(gm);
+    init_custom(gm);
+    init_story(gm);
+    init_echap(gm);
+    init_tuto(gm);
 }
 
 void option_h(void)
@@ -20,16 +27,17 @@ void option_h(void)
 
 int main(int ac, char **av)
 {
-    game_t *gm;
+    game_t *game;
 
-    if (ac < 1 || ac > 2)
+    if (ac != 1)
         return (84);
     if (ac == 2 && av[1][0] == '-' && av[1][1] == 'h')
         option_h();
-    gm = struct_fill_game();
-    initialisation(gm);
-    while (sfRenderWindow_isOpen(gm->win->win)) {
-            scene(gm);
-            sfRenderWindow_display(gm->win->win);
+    game = struct_fill_game();
+    initialisation(game);
+    while (sfRenderWindow_isOpen(game->win->win)) {
+            scene(game);
+            sfRenderWindow_display(game->win->win);
     }
+    return (0);
 }

@@ -1,15 +1,13 @@
 /*
-** EPITECH PROJECT, 2021
+** EPITECH PROJECT, 2020
 ** include.h
 ** File description:
 ** include
 */
 
-#ifndef INCLUDE_H_
-#define INCLUDE_H_
-
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <SFML/Window.h>
 #include <SFML/System.h>
 #include <SFML/Audio.h>
@@ -21,5 +19,3 @@
 #include <fcntl.h>
 #include <stddef.h>
 #include "struct.h"
-
-#endif /* !INCLUDE_H_ */

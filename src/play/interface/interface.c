@@ -9,6 +9,8 @@
 
 void interface(game_t *gm)
 {
-    if (gm->play->inv->press == 1)
+    if (gm->play->inv->press == 1) {
         inventory(gm);
+        character_inv(gm);
+    }
 }
